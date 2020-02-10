@@ -1,15 +1,11 @@
 import java.util.Scanner;
-import java.sql.*;
-import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.ServerSocket;
 import java.net.Socket;
 
 public class GPA extends Thread {
-    public static void main(String[] args) throws ClassNotFoundException, SQLException, IOException   {
+    public static void main(String[] args) throws ClassNotFoundException, IOException   {
     	try
 		{
 			Socket s = new Socket("127.0.0.1",3000);
