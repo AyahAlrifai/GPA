@@ -1,0 +1,43 @@
+java 8 jdk
+Eclipse IDE "java Standerd"
+MySQL "workbench"
+
+create table student (id int primary key , name varchar(50) not null , gpa float not null ,passHours int not null);
+
+import java.util.Scanner;
+import java.sql.*;
+public class GPA {
+
+    public static void main(String[] args) throws ClassNotFoundException, SQLException   {
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/school","root","");
+        PreparedStatement stmt = con.prepareStatement("select * from student where id=?");
+   
+        System.out.println("Welcome in GPA calculater");
+        Scanner sc=new Scanner(System.in);
+        float CumulativeGPA,hourSum=0,SemesterGPA=0;
+        int CumulativeHours,choice;
+        System.out.print("Cumulative GPA:");
+        CumulativeGPA=sc.nextFloat();
+        System.out.print("Cumulative Hours:");
+        CumulativeHours=sc.nextInt();
+        System.out.print("\nMenu\n1:Insert new mark\n2:Calculate GPA\n.............?!");
+        choice=sc.nextInt();
+        while(choice==1)
+        {
+        System.out.print("\nenter number of hours:");
+        int h=sc.nextInt();
+        System.out.print("Enter mark:");
+        float m=sc.nextFloat();
+        hourSum+=h;
+        SemesterGPA+=h*m;
+        System.out.print("\nMenu\n1:Insert new mark\n2:Calculate GPA\n.............?!");
+        choice=sc.nextInt();
+        }
+        System.out.print("\nSemester GPA:");
+        System.out.print(SemesterGPA/hourSum);
+        System.out.print("\nCumulative GPA:");
+        System.out.print((CumulativeGPA*CumulativeHours+SemesterGPA)/(hourSum+CumulativeHours));
+    }
+}
+
